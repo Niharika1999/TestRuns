@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Assessment Form</h2>
+        <form id="assessmentForm">
+            <!-- Full Name Field -->
+            <div class="form-group">
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" class="custom-input" id="fullName" name="fullName" placeholder="Your answer" required>
+            </div>
+
+            <!-- Date of Birth Field -->
+            <div class="form-group">
+                <label for="dob">Date of Birth <span class="required">*</span></label>
+                <input type="date" class="custom-input" id="dob" name="dob" required>
+            </div>
+
+            <!-- Gender Field -->
+            <div class="form-group">
+                <label for="gender">Gender <span class="required">*</span></label>
+                <select id="gender" name="gender" class="custom-input form-control" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Phone Number Field -->
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number <span class="required">*</span></label>
+                <input type="tel" class="custom-input" id="phoneNumber" name="phoneNumber" placeholder="Your answer" required>
+            </div>
+
+            <!-- Email Address Field -->
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" class="custom-input" id="email" name="email" placeholder="Your answer" required>
+            </div>
+
+            <!-- Address Field -->
+            <div class="form-group">
+                <label for="address">Address <span class="required">*</span></label>
+                <input type="text" class="custom-input" id="address" name="address" placeholder="Your answer" required>
+            </div>
+
+            <!-- Services Interested Field -->
+            <div class="form-group">
+                <label>Services Interested</label>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Counseling">
+                    <label class="form-check-label">Counseling</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="CalFresh Enrollment">
+                    <label class="form-check-label">CalFresh Enrollment</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Employment Support">
+                    <label class="form-check-label">Employment Support</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Home Food Distribution (KIDS)">
+                    <label class="form-check-label">Home Food Distribution (KIDS)</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Housing Waiting List Enrollment">
+                    <label class="form-check-label">Housing Waiting List Enrollment</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Food Pantry">
+                    <label class="form-check-label">Food Pantry</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Free Transportation">
+                    <label class="form-check-label">Free Transportation</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Income Tax Preparation (LIPT)">
+                    <label class="form-check-label">Income Tax Preparation (LIPT)</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Medical Enrollment">
+                    <label class="form-check-label">Medical Enrollment</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="The Single-Parent Utility Relief Program (SPUR)">
+                    <label class="form-check-label">The Single-Parent Utility Relief Program (SPUR)</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Senior Housing Accommodations">
+                    <label class="form-check-label">Senior Housing Accommodations</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Sports & Electives (Including Basketball Academies)">
+                    <label class="form-check-label">Sports & Electives (Including Basketball Academies)</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Scholarships">
+                    <label class="form-check-label">Scholarships</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Workshops">
+                    <label class="form-check-label">Workshops</label>
+                </div>
+            
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="services" value="Other">
+                    <label class="form-check-label">Other</label>
+                </div>
+            </div>
+            
+
+            <!-- Any Questions Field -->
+            <div class="form-group">
+                <label for="questions">Any Questions?</label>
+                <textarea class="custom-input" id="questions" name="questions" placeholder="Your answer"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
