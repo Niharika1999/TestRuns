@@ -5,7 +5,7 @@ document.getElementById('assessmentForm').addEventListener('submit', function(ev
     const formObject = Object.fromEntries(formData.entries());
     formObject.services = formData.getAll('services'); // Get all selected services
 
-    fetch('http://localhost:3000/update-excel', { // Update URL if necessary
+    fetch('http://localhost:3000/update-excel', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

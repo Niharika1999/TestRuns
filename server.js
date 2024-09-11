@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const XLSX = require('xlsx');
+const ExcelJS = require('exceljs');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
@@ -11,53 +11,46 @@ app.use(cors());
 
 const filePath = path.join(__dirname, 'assessment_data.xlsx');
 
-app.post('/update-excel', (req, res) => {
+app.post('/update-excel', async (req, res) => {
     try {
         const formData = req.body;
         formData.services = formData.services.join(', '); // Format services as a comma-separated string
 
-        let workbook;
+        let workbook = new ExcelJS.Workbook();
         let worksheet;
 
         if (fs.existsSync(filePath)) {
-            workbook = XLSX.readFile(filePath);
-            worksheet = workbook.Sheets['Assessment Data'];
+            await workbook.xlsx.readFile(filePath);
+            worksheet = workbook.getWorksheet('Assessment Data');
 
             // If the worksheet doesn't exist, create it
             if (!worksheet) {
-                worksheet = XLSX.utils.aoa_to_sheet([
-                    ['Full Name', 'Date of Birth', 'Gender', 'Phone Number', 'Email Address', 'Address', 'Services Interested', 'Questions']
-                ]);
-                XLSX.utils.book_append_sheet(workbook, worksheet, "Assessment Data");
+                worksheet = workbook.addWorksheet('Assessment Data');
+                worksheet.addRow(['Full Name', 'Date of Birth', 'Gender', 'Phone Number', 'Email Address', 'Address', 'Services Interested', 'Questions']);
             }
         } else {
             // Create a new workbook and worksheet if the file doesn't exist
-            workbook = XLSX.utils.book_new();
-            worksheet = XLSX.utils.aoa_to_sheet([
-                ['Full Name', 'Date of Birth', 'Gender', 'Phone Number', 'Email Address', 'Address', 'Services Interested', 'Questions']
-            ]);
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Assessment Data");
+            worksheet = workbook.addWorksheet('Assessment Data');
+            worksheet.addRow(['Full Name', 'Date of Birth', 'Gender', 'Phone Number', 'Email Address', 'Address', 'Services Interested', 'Questions']);
         }
 
         // Prepare the new data to be appended
         const data = [
-            [
-                formData.fullName,
-                formData.dob,
-                formData.gender,
-                formData.phoneNumber,
-                formData.email,
-                formData.address,
-                formData.services,
-                formData.questions
-            ]
+            formData.fullName,
+            formData.dob,
+            formData.gender,
+            formData.phoneNumber,
+            formData.email,
+            formData.address,
+            formData.services,
+            formData.questions
         ];
 
         // Append the data to the worksheet
-        XLSX.utils.sheet_add_aoa(worksheet, data, { origin: -1 });
+        worksheet.addRow(data);
 
         // Write the updated workbook back to the file
-        XLSX.writeFile(workbook, filePath);
+        await workbook.xlsx.writeFile(filePath);
 
         res.json({ success: true });
     } catch (error) {
